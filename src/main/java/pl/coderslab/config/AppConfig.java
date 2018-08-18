@@ -14,15 +14,17 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableScheduling
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "pl.coderslab")
+@ComponentScan(basePackages = {"pl.coderslab.controller", "pl.coderslab.web" ,"pl.coderslab.config", "pl.coderslab.app"})
 public class AppConfig implements WebMvcConfigurer {
+
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/views/");
+        viewResolver.setPrefix("/META-INF/views/");
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
+
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
