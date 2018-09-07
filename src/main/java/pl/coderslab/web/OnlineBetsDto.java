@@ -25,7 +25,7 @@ public class OnlineBetsDto {
     public String toString() {
         return "Discipline: " + this.sport
                 + "\n"
-                + this.firstTeamName
+                + this.firstTeamName + " "
                 + this.firstPoints + " : "
                 + this.secondPoints + " "
                 + this.secondTeam;

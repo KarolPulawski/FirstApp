@@ -4,7 +4,8 @@
 
 <h1>Hello</h1>
 
-<a href="/get-teams" >DISPLAY TEAMS</a>
+<p href="/get-teams" >DISPLAY TEAMS</p>
+<p href="/get-countries" >DISPLAY Coutnries</p>
 
 
 <%@include file="default/footer.jsp"%>

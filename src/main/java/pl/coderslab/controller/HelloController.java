@@ -29,11 +29,12 @@ public class HelloController {
 
     @RequestMapping("/get-countries")
     @ResponseBody
-    public String getCountriesAction() {
+    public String getCountriesAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        String url = "https://apifootball.com/api/?action=get_countries&"+
 //        "APIkey=eee5028bd4f1a9645f0de3b18aa4c17c11a0eedd815aeaacf2cae4d5801e8969";
-        String url = "https://apifootball.com/api/?action=get_countries&" +
-                "APIkey=ba0685c21685e05aa4db599843010b15fd8488ddba380c529d5ec09a48f4298e";
+//        String url = "https://apifootball.com/api/?action=get_countries&" +
+//                "APIkey=ba0685c21685e05aa4db599843010b15fd8488ddba380c529d5ec09a48f4298e";
+        String url = "https://apifootball.com/api/?action=get_countries&APIkey=ba0685c21685e05aa4db599843010b15fd8488ddba380c529d5ec09a48f4298e";
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<CountryDto[]> responseCountries = restTemplate.getForEntity(
                 url, CountryDto[].class);
@@ -43,13 +44,14 @@ public class HelloController {
             System.out.println(country.getName() + " -> " + country.getApiCountryId());
         }
 
-        return "some result";
+        request.setAttribute("countries", countries);
+        request.getServletContext().getRequestDispatcher("/META-INF/views/leagues.jsp").forward(request, response);
+        return "leagues";
     }
 
     @RequestMapping("/get-teams")
     public String getTeams(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "https://apifootball.com/api/?action=get_standings" +
-                "&league_id=453&APIkey=ba0685c21685e05aa4db599843010b15fd8488ddba380c529d5ec09a48f4298e";
+        String url = "https://apifootball.com/api/?action=get_standings&league_id=63&APIkey=ba0685c21685e05aa4db599843010b15fd8488ddba380c529d5ec09a48f4298e";
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<TeamDto[]> responseTeams = restTemplate.getForEntity(
                 url, TeamDto[].class);
@@ -65,13 +67,14 @@ public class HelloController {
 
     @RequestMapping("/get-onlinebets-test")
     public String getOnlineBetsTest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "http://localhost:8080/api/fake-today-games ";
+        String url = "http://localhost:8080/api/fake-today-games";
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<OnlineBetsDto[]> responseTeams = restTemplate.getForEntity(
                 url, OnlineBetsDto[].class);
         OnlineBetsDto[] betsDtos = responseTeams.getBody();
         for(OnlineBetsDto bet : betsDtos){
             logger.info("betsDtos {} ", bet);
+            System.out.println("test print");
 
         }
         return "Bets were downloaded.";
@@ -80,3 +83,7 @@ public class HelloController {
 //        return "teamsDisplay";
     }
 }
+
+/*****************************************************************************************/
+/** API KEY:         ba0685c21685e05aa4db599843010b15fd8488ddba380c529d5ec09a48f4298e   **/
+/*****************************************************************************************/
