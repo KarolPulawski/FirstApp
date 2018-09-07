@@ -4,8 +4,11 @@
 
 <h1>Hello</h1>
 
-<p href="/get-teams" >DISPLAY TEAMS</p>
-<p href="/get-countries" >DISPLAY Coutnries</p>
+<a href="/get-teams" >DISPLAY TEAMS</a></br>
+
+<a href="/get-countries" >DISPLAY Coutnries</a></br>
+
+<a href="/get-onlinebets-test" >DISPLAY fake bets</a></br>
 
 
 <%@include file="default/footer.jsp"%>

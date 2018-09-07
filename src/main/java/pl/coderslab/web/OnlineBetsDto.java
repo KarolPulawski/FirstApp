@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class OnlineBetsDto {
 
     @JsonProperty("firstTeam")
-    private String firstTeamName;
+    private String firstTeam;
 
     @JsonProperty("firstPoints")
     private String firstPoints;
@@ -25,7 +25,7 @@ public class OnlineBetsDto {
     public String toString() {
         return "Discipline: " + this.sport
                 + "\n"
-                + this.firstTeamName + " "
+                + this.firstTeam + " "
                 + this.firstPoints + " : "
                 + this.secondPoints + " "
                 + this.secondTeam;
@@ -35,19 +35,19 @@ public class OnlineBetsDto {
     }
 
     public OnlineBetsDto(String firstTeamName, String firstPoints, String secondTeam, String secondPoints, String sport) {
-        this.firstTeamName = firstTeamName;
+        this.firstTeam = firstTeamName;
         this.firstPoints = firstPoints;
         this.secondTeam = secondTeam;
         this.secondPoints = secondPoints;
         this.sport = sport;
     }
 
-    public String getFirstTeamName() {
-        return firstTeamName;
+    public String getFirstTeam() {
+        return firstTeam;
     }
 
-    public void setFirstTeamName(String firstTeamName) {
-        this.firstTeamName = firstTeamName;
+    public void setFirstTeam(String firstTeamName) {
+        this.firstTeam = firstTeamName;
     }
 
     public String getFirstPoints() {

@@ -28,12 +28,7 @@ public class HelloController {
     }
 
     @RequestMapping("/get-countries")
-    @ResponseBody
     public String getCountriesAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String url = "https://apifootball.com/api/?action=get_countries&"+
-//        "APIkey=eee5028bd4f1a9645f0de3b18aa4c17c11a0eedd815aeaacf2cae4d5801e8969";
-//        String url = "https://apifootball.com/api/?action=get_countries&" +
-//                "APIkey=ba0685c21685e05aa4db599843010b15fd8488ddba380c529d5ec09a48f4298e";
         String url = "https://apifootball.com/api/?action=get_countries&APIkey=ba0685c21685e05aa4db599843010b15fd8488ddba380c529d5ec09a48f4298e";
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<CountryDto[]> responseCountries = restTemplate.getForEntity(
@@ -74,16 +69,10 @@ public class HelloController {
         OnlineBetsDto[] betsDtos = responseTeams.getBody();
         for(OnlineBetsDto bet : betsDtos){
             logger.info("betsDtos {} ", bet);
-            System.out.println("test print");
-
         }
-        return "Bets were downloaded.";
-//        request.setAttribute("teams", teams);
-//        request.getServletContext().getRequestDispatcher("/META-INF/views/teamsDisplay.jsp").forward(request, response);
-//        return "teamsDisplay";
+
+        request.setAttribute("betsDtos", betsDtos);
+        request.getServletContext().getRequestDispatcher("/META-INF/views/fakeBetDisplay.jsp").forward(request, response);
+        return "fakeBetDisplay";
     }
 }
-
-/*****************************************************************************************/
-/** API KEY:         ba0685c21685e05aa4db599843010b15fd8488ddba380c529d5ec09a48f4298e   **/
-/*****************************************************************************************/
